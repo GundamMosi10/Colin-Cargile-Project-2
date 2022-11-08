@@ -8,9 +8,11 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -18,7 +20,7 @@ import java.util.Objects;
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "album")
-public class Album {
+public class Album implements Serializable {
 
     @Id
     @Column(name = "album_id")
@@ -41,6 +43,7 @@ public class Album {
     private Integer labelId;
     @NotNull(message = "Album list price cannot be null.")
     @Column(name = "list_price")
+    @Digits(integer = 3, fraction = 2, message = "Price must have 3 integers and 2 fraction places")
     private Double listPrice;
 
     public Album() {

@@ -21,6 +21,7 @@ import java.util.Optional;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.doReturn;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -73,6 +74,7 @@ public class ArtistControllerTest {
                 .content(inputJson)
                 .contentType(MediaType.APPLICATION_JSON)
                 )
+                .andDo(print())
                 .andExpect(status().isCreated())
                 .andExpect(content().json(outputJson));
     }
@@ -82,6 +84,7 @@ public class ArtistControllerTest {
         String outputJson = mapper.writeValueAsString(outputArtist1);
 
         mockMvc.perform(get("/artist/1"))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().json(outputJson));
     }
@@ -91,6 +94,7 @@ public class ArtistControllerTest {
         String outputJson = mapper.writeValueAsString(allArtists);
 
         mockMvc.perform(get("/artist"))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().json(outputJson));
     }
@@ -106,12 +110,14 @@ public class ArtistControllerTest {
                 .content(inputJson)
                 .contentType(MediaType.APPLICATION_JSON)
         )
+                .andDo(print())
                 .andExpect(status().isNoContent());
     }
 
     @Test
     public void shouldRespondWith204WhenDeletingArtist() throws Exception {
         mockMvc.perform(delete("/artist/1"))
+                .andDo(print())
                 .andExpect(status().isNoContent());
     }
 }

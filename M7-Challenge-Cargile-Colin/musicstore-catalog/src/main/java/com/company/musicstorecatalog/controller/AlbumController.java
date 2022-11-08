@@ -19,7 +19,7 @@ public class AlbumController {
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Album getAlbumById(@PathVariable @Valid Integer id) {
+    public Album getAlbumById(@PathVariable Integer id) {
         Optional<Album> returnVal = repo.findById(id);
         if (returnVal.isPresent()) {
             return returnVal.get();
@@ -30,13 +30,13 @@ public class AlbumController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public Album addAlbum(@RequestBody @Valid Album album) {
+    public Album addAlbum(@RequestBody Album album) {
         return repo.save(album);
     }
 
     @PutMapping()
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateAlbum(@RequestBody @Valid Album album) {
+    public void updateAlbum(@RequestBody Album album) {
         if (album.getId() != null) {
             repo.save(album);
         } else {
