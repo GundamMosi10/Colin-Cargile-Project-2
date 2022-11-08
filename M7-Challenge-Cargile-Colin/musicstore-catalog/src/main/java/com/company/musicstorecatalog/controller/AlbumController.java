@@ -50,7 +50,7 @@ public class AlbumController {
         repo.deleteById(id);
     }
 
-    @GetMapping
+    @GetMapping()
     @ResponseStatus(HttpStatus.OK)
     public List<Album> getAlbum() {
         return repo.findAll();

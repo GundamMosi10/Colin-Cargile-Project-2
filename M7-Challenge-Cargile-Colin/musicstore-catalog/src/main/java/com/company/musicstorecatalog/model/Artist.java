@@ -3,6 +3,8 @@ package com.company.musicstorecatalog.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
@@ -14,8 +16,12 @@ public class Artist {
     @Column(name = "artist_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotEmpty(message = "Artist name can not be empty.")
+    @Size(max = 50, message = "Artist name should be 50 characters or under.")
     private String name;
+    @Size(max = 255, message = "Artist instagram should be 255 characters or under.")
     private String instagram;
+    @Size(max = 255, message = "Artist twitter should be 255 characters or under.")
     private String twitter;
 
     public Artist() {

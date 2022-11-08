@@ -8,6 +8,9 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -18,29 +21,37 @@ import java.util.Objects;
 public class Album {
 
     @Id
-    @Column(name = "artist_id")
+    @Column(name = "album_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotEmpty(message = "Album title cannot be empty.")
+    @Size(max = 50, message = "Album title should be 50 characters or less.")
     private String title;
-    private Integer artist_id;
+    @NotNull(message = "Artist ID cannot be null.")
+    @Column(name = "artist_id")
+    private Integer artistId;
     @JsonSerialize(using = LocalDateSerializer.class)
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "release_date")
+    @NotEmpty(message = "Album release date cannot be empty.")
     private LocalDate releaseDate;
-    private Integer label_id;
+    @NotNull(message = "Label ID cannot be null.")
+    @Column(name = "label_id")
+    private Integer labelId;
+    @NotNull(message = "Album list price cannot be null.")
     @Column(name = "list_price")
     private Double listPrice;
 
     public Album() {
     }
 
-    public Album(Integer id, String title, Integer artist_id, LocalDate releaseDate, Integer label_id, Double listPrice) {
+    public Album(Integer id, String title, Integer artistId, LocalDate releaseDate, Integer labelId, Double listPrice) {
         this.id = id;
         this.title = title;
-        this.artist_id = artist_id;
+        this.artistId = artistId;
         this.releaseDate = releaseDate;
-        this.label_id = label_id;
+        this.labelId = labelId;
         this.listPrice = listPrice;
     }
 
@@ -60,12 +71,12 @@ public class Album {
         this.title = title;
     }
 
-    public Integer getArtist_id() {
-        return artist_id;
+    public Integer getArtistId() {
+        return artistId;
     }
 
-    public void setArtist_id(Integer artist_id) {
-        this.artist_id = artist_id;
+    public void setArtistId(Integer artistId) {
+        this.artistId = artistId;
     }
 
     public LocalDate getReleaseDate() {
@@ -76,12 +87,12 @@ public class Album {
         this.releaseDate = releaseDate;
     }
 
-    public Integer getLabel_id() {
-        return label_id;
+    public Integer getLabelId() {
+        return labelId;
     }
 
-    public void setLabel_id(Integer label_id) {
-        this.label_id = label_id;
+    public void setLabelId(Integer labelId) {
+        this.labelId = labelId;
     }
 
     public Double getListPrice() {
@@ -97,12 +108,12 @@ public class Album {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Album album = (Album) o;
-        return Objects.equals(id, album.id) && Objects.equals(title, album.title) && Objects.equals(artist_id, album.artist_id) && Objects.equals(releaseDate, album.releaseDate) && Objects.equals(label_id, album.label_id) && Objects.equals(listPrice, album.listPrice);
+        return Objects.equals(id, album.id) && Objects.equals(title, album.title) && Objects.equals(artistId, album.artistId) && Objects.equals(releaseDate, album.releaseDate) && Objects.equals(labelId, album.labelId) && Objects.equals(listPrice, album.listPrice);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, artist_id, releaseDate, label_id, listPrice);
+        return Objects.hash(id, title, artistId, releaseDate, labelId, listPrice);
     }
 
     @Override
@@ -110,9 +121,9 @@ public class Album {
         return "Album{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", artist_id=" + artist_id +
+                ", artistId=" + artistId +
                 ", releaseDate=" + releaseDate +
-                ", label_id=" + label_id +
+                ", labelId=" + labelId +
                 ", listPrice=" + listPrice +
                 '}';
     }
