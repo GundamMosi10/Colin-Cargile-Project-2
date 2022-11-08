@@ -30,6 +30,12 @@ public class Track {
     public Track() {
     }
 
+    public Track(Integer albumId, String title, int runTime) {
+        this.albumId = albumId;
+        this.title = title;
+        this.runTime = runTime;
+    }
+
     public Track(Integer id, Integer albumId, String title, int runTime) {
         this.id = id;
         this.albumId = albumId;

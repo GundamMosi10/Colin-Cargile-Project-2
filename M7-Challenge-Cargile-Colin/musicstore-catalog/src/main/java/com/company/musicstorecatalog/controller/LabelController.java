@@ -46,7 +46,7 @@ public class LabelController {
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteLabel(@RequestBody Integer id) {
+    public void deleteLabel(@PathVariable Integer id) {
         repo.deleteById(id);
     }
 

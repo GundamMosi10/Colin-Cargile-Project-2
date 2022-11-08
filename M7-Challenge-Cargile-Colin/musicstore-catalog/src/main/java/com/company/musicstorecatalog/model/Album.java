@@ -46,6 +46,14 @@ public class Album {
     public Album() {
     }
 
+    public Album(String title, Integer artistId, LocalDate releaseDate, Integer labelId, Double listPrice) {
+        this.title = title;
+        this.artistId = artistId;
+        this.releaseDate = releaseDate;
+        this.labelId = labelId;
+        this.listPrice = listPrice;
+    }
+
     public Album(Integer id, String title, Integer artistId, LocalDate releaseDate, Integer labelId, Double listPrice) {
         this.id = id;
         this.title = title;

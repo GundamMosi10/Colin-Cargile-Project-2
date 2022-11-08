@@ -53,7 +53,7 @@ public class ArtistController {
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public List<Artist> getArtist() {
+    public List<Artist> getAllArtists() {
         return repo.findAll();
     }
 }
