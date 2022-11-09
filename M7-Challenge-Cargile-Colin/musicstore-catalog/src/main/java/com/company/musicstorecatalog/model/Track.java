@@ -20,11 +20,11 @@ public class Track {
     @NotNull(message = "Album ID cannot be null.")
     @Column(name = "album_id")
     private Integer albumId;
-    @NotEmpty(message = "Track title cannot be empty.")
+    @NotNull(message = "Track title cannot be null.")
     @Size(max = 50, message = "Track title should have 50 characters or less.")
     private String title;
     @NotNull(message = "Track run time cannot be null.")
-    @Column(name = "runtime")
+    @Column(name = "run_time")
     private int runTime;
 
     public Track() {

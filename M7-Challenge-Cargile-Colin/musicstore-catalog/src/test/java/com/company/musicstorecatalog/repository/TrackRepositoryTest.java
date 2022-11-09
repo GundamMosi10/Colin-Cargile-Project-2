@@ -3,6 +3,7 @@ package com.company.musicstorecatalog.repository;
 import com.company.musicstorecatalog.model.Album;
 import com.company.musicstorecatalog.model.Artist;
 import com.company.musicstorecatalog.model.Label;
+import com.company.musicstorecatalog.model.Track;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,15 +12,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.Assert.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class AlbumRepositoryTest {
+public class TrackRepositoryTest {
 
+    @Autowired
+    TrackRepository trackRepository;
     @Autowired
     AlbumRepository albumRepository;
     @Autowired
@@ -27,16 +29,16 @@ public class AlbumRepositoryTest {
     @Autowired
     LabelRepository labelRepository;
 
-
     @Before
     public void setUp() throws Exception {
+        trackRepository.deleteAll();
         albumRepository.deleteAll();
         artistRepository.deleteAll();
         labelRepository.deleteAll();
     }
 
     @Test
-    public void addGetDeleteAlbum() {
+    public void shouldGetDeleteTrack() {
         Label label = new Label();
         label.setName("Roadrunner Records");
         label.setWebsite("https://www.elektramusicgroup.com/roadrunnerrecords");
@@ -54,23 +56,24 @@ public class AlbumRepositoryTest {
         album.setLabelId(label.getId());
         album.setReleaseDate(LocalDate.of(2005, 03, 06));
         album.setListPrice(10.99);
-
         album = albumRepository.save(album);
 
-        Optional<Album> album1 = albumRepository.findById(album.getId());
+        Track track = new Track();
+        track.setTitle("Like Light to the Flies");
+        track.setAlbumId(album.getId());
+        track.setRunTime(540);
+        track = trackRepository.save(track);
 
-        assertEquals(album1.get(), album);
+        Optional<Track> track1 = trackRepository.findById(track.getId());
+        assertEquals(track1.get(), track);
 
-        albumRepository.deleteById(album.getId());
-
-        album1 = albumRepository.findById(album.getId());
-
-        assertFalse(album1.isPresent());
-
+        trackRepository.deleteById(track.getId());
+        track1 = trackRepository.findById(track.getId());
+        assertFalse(track1.isPresent());
     }
 
     @Test
-    public void shouldUpdateAlbum() {
+    public void shouldUpdateTrack() {
         Label label = new Label();
         label.setName("Roadrunner Records");
         label.setWebsite("https://www.elektramusicgroup.com/roadrunnerrecords");
@@ -88,21 +91,25 @@ public class AlbumRepositoryTest {
         album.setLabelId(label.getId());
         album.setReleaseDate(LocalDate.of(2005, 03, 06));
         album.setListPrice(10.99);
-
         album = albumRepository.save(album);
 
-        album.setTitle("Ascendancy-LIVE");
-        album.setReleaseDate(LocalDate.of(2006, 3, 12));
-        album.setListPrice(20.00);
+        Track track = new Track();
+        track.setTitle("Like Light to the Flies");
+        track.setAlbumId(album.getId());
+        track.setRunTime(540);
+        track = trackRepository.save(track);
 
-        albumRepository.save(album);
+        track.setTitle("Rain");
+        track.setRunTime(411);
+        track.setAlbumId(album.getId());
+        trackRepository.save(track);
 
-        Optional<Album> album1 = albumRepository.findById(album.getId());
-        assertEquals(album1.get(), album);
+        Optional<Track> track1 = trackRepository.findById(track.getId());
+        assertEquals(track1.get(), track);
     }
 
     @Test
-    public void shouldGetAllAlbums() {
+    public void shouldGetAllTracks() {
         Label label = new Label();
         label.setName("Roadrunner Records");
         label.setWebsite("https://www.elektramusicgroup.com/roadrunnerrecords");
@@ -120,10 +127,15 @@ public class AlbumRepositoryTest {
         album.setLabelId(label.getId());
         album.setReleaseDate(LocalDate.of(2005, 03, 06));
         album.setListPrice(10.99);
-
         album = albumRepository.save(album);
 
-        List<Album> albumList = albumRepository.findAll();
-        assertEquals(albumList.size(), 1);
+        Track track = new Track();
+        track.setTitle("Like Light to the Flies");
+        track.setAlbumId(album.getId());
+        track.setRunTime(540);
+        track = trackRepository.save(track);
+
+        List<Track> trackList = trackRepository.findAll();
+        assertEquals(trackList.size(), 1);
     }
 }

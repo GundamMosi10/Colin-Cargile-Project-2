@@ -1,9 +1,11 @@
 package com.company.musicstorecatalog.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Objects;
 
@@ -16,10 +18,11 @@ public class Label {
     @Column(name = "label_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotEmpty(message = "Label name must not be empty")
+    @NotNull(message = "Label name must not be null.")
     @Size(max = 50, message = "Label name should be 50 characters or under")
     private String name;
     @Size(max = 255, message = "label website should be 255 characters or under")
+    @Nullable
     private String website;
 
     public Label() {

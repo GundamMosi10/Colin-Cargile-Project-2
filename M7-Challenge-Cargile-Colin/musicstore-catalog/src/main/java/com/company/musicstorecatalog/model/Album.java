@@ -26,7 +26,7 @@ public class Album implements Serializable {
     @Column(name = "album_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotEmpty(message = "Album title cannot be empty.")
+    @NotNull(message = "Album title cannot be null.")
     @Size(max = 50, message = "Album title should be 50 characters or less.")
     private String title;
     @NotNull(message = "Artist ID cannot be null.")
@@ -36,7 +36,7 @@ public class Album implements Serializable {
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "release_date")
-    @NotEmpty(message = "Album release date cannot be empty.")
+    @NotNull(message = "Album release date cannot be null.")
     private LocalDate releaseDate;
     @NotNull(message = "Label ID cannot be null.")
     @Column(name = "label_id")
