@@ -3,6 +3,7 @@ package com.company.musicstorecatalog.repository;
 import com.company.musicstorecatalog.model.Album;
 import com.company.musicstorecatalog.model.Artist;
 import com.company.musicstorecatalog.model.Label;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -31,8 +32,8 @@ public class AlbumRepositoryTest {
     @Before
     public void setUp() throws Exception {
         albumRepository.deleteAll();
-        artistRepository.deleteAll();
         labelRepository.deleteAll();
+        artistRepository.deleteAll();
     }
 
     @Test
@@ -125,5 +126,12 @@ public class AlbumRepositoryTest {
 
         List<Album> albumList = albumRepository.findAll();
         assertEquals(albumList.size(), 1);
+    }
+
+    @After //help from Kevin(Zhong) for the cascading tests problem.
+    public void breakDown() throws Exception {
+        albumRepository.deleteAll();
+        labelRepository.deleteAll();
+        artistRepository.deleteAll();
     }
 }

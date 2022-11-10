@@ -1,6 +1,7 @@
 package com.company.musicstorecatalog.repository;
 
 import com.company.musicstorecatalog.model.Label;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -62,5 +63,10 @@ public class LabelRepositoryTest {
 
         List<Label> labelList = labelRepository.findAll();
         assertEquals(labelList.size(), 2);
+    }
+
+    @After
+    public void breakDown() throws Exception {
+        labelRepository.deleteAll();
     }
 }
