@@ -1,0 +1,6 @@
+/Users/colincargile/Desktop/Colin-Cargile-Project-2/M7-Challenge-Cargile-Colin/musicstore-catalog
+
+docker container run -d -p 3306:3306 \
+--env MYSQL_ROOT_PASSWORD=luisa10 \
+--volume="/Users/colincargile/Desktop/Colin-Cargile-Project-2/M7-Challenge-Cargile-Colin/musicstore-catalog":/var/lib/mysql \
+--name=musicstorecatalog-db musicstorecatalog-db
