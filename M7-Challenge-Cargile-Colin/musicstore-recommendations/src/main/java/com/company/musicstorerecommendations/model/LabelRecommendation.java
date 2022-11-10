@@ -1,5 +1,4 @@
 package com.company.musicstorerecommendations.model;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -8,34 +7,34 @@ import java.util.Objects;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "track_recommendations")
-public class TrackRecommendations {
+@Table(name = "label_recommendation")
+public class LabelRecommendation {
 
     @Id
-    @Column(name = "trackRecommendations_id")
+    @Column(name = "labelRecommendation_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotNull(message = "track id cannot be null.")
-    @Column(name = "track_id")
-    private Integer trackId;
+    @NotNull(message = "label id cannot be null.")
+    @Column(name = "label_id")
+    private Integer labelId;
     @NotNull(message = "user is cannot be null.")
     @Column(name = "user_id")
     private Integer userId;
     @NotNull(message = "boolean cannot be null.")
     private boolean liked;
 
-    public TrackRecommendations() {
+    public LabelRecommendation() {
     }
 
-    public TrackRecommendations(Integer trackId, Integer userId, boolean liked) {
-        this.trackId = trackId;
+    public LabelRecommendation(Integer labelId, Integer userId, boolean liked) {
+        this.labelId = labelId;
         this.userId = userId;
         this.liked = liked;
     }
 
-    public TrackRecommendations(Integer id, Integer trackId, Integer userId, boolean liked) {
+    public LabelRecommendation(Integer id, Integer labelId, Integer userId, boolean liked) {
         this.id = id;
-        this.trackId = trackId;
+        this.labelId = labelId;
         this.userId = userId;
         this.liked = liked;
     }
@@ -48,12 +47,12 @@ public class TrackRecommendations {
         this.id = id;
     }
 
-    public Integer getTrackId() {
-        return trackId;
+    public Integer getLabelId() {
+        return labelId;
     }
 
-    public void setTrackId(Integer trackId) {
-        this.trackId = trackId;
+    public void setLabelId(Integer labelId) {
+        this.labelId = labelId;
     }
 
     public Integer getUserId() {
@@ -76,20 +75,20 @@ public class TrackRecommendations {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TrackRecommendations that = (TrackRecommendations) o;
-        return liked == that.liked && Objects.equals(id, that.id) && Objects.equals(trackId, that.trackId) && Objects.equals(userId, that.userId);
+        LabelRecommendation that = (LabelRecommendation) o;
+        return liked == that.liked && Objects.equals(id, that.id) && Objects.equals(labelId, that.labelId) && Objects.equals(userId, that.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, trackId, userId, liked);
+        return Objects.hash(id, labelId, userId, liked);
     }
 
     @Override
     public String toString() {
-        return "TrackRecommendations{" +
+        return "LabelRecommendation{" +
                 "id=" + id +
-                ", trackId=" + trackId +
+                ", labelId=" + labelId +
                 ", userId=" + userId +
                 ", liked=" + liked +
                 '}';

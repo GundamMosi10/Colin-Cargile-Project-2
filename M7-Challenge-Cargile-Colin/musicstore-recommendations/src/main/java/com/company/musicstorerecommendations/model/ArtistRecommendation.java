@@ -8,34 +8,34 @@ import java.util.Objects;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "album_recommendations")
-public class AlbumRecommendations {
+@Table(name = "artist_recommendation")
+public class ArtistRecommendation {
 
     @Id
-    @Column(name = "albumRecommendations_id")
+    @Column(name = "artistRecommendation_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotNull(message = "album id cannot be null.")
-    @Column(name = "album_id")
-    private Integer albumId;
+    @NotNull(message = "artist id cannot be null.")
+    @Column(name = "artist_id")
+    private Integer artistId;
     @NotNull(message = "user is cannot be null.")
     @Column(name = "user_id")
     private Integer userId;
     @NotNull(message = "boolean cannot be null.")
     private boolean liked;
 
-    public AlbumRecommendations() {
+    public ArtistRecommendation() {
     }
 
-    public AlbumRecommendations(Integer albumId, Integer userId, boolean liked) {
-        this.albumId = albumId;
+    public ArtistRecommendation(Integer artistId, Integer userId, boolean liked) {
+        this.artistId = artistId;
         this.userId = userId;
         this.liked = liked;
     }
 
-    public AlbumRecommendations(Integer id, Integer albumId, Integer userId, boolean liked) {
+    public ArtistRecommendation(Integer id, Integer artistId, Integer userId, boolean liked) {
         this.id = id;
-        this.albumId = albumId;
+        this.artistId = artistId;
         this.userId = userId;
         this.liked = liked;
     }
@@ -48,12 +48,12 @@ public class AlbumRecommendations {
         this.id = id;
     }
 
-    public Integer getAlbumId() {
-        return albumId;
+    public Integer getArtistId() {
+        return artistId;
     }
 
-    public void setAlbumId(Integer albumId) {
-        this.albumId = albumId;
+    public void setArtistId(Integer artistId) {
+        this.artistId = artistId;
     }
 
     public Integer getUserId() {
@@ -76,20 +76,20 @@ public class AlbumRecommendations {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AlbumRecommendations that = (AlbumRecommendations) o;
-        return liked == that.liked && Objects.equals(id, that.id) && Objects.equals(albumId, that.albumId) && Objects.equals(userId, that.userId);
+        ArtistRecommendation that = (ArtistRecommendation) o;
+        return liked == that.liked && Objects.equals(id, that.id) && Objects.equals(artistId, that.artistId) && Objects.equals(userId, that.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, albumId, userId, liked);
+        return Objects.hash(id, artistId, userId, liked);
     }
 
     @Override
     public String toString() {
-        return "AlbumRecommendations{" +
+        return "ArtistRecommendation{" +
                 "id=" + id +
-                ", albumId=" + albumId +
+                ", artistId=" + artistId +
                 ", userId=" + userId +
                 ", liked=" + liked +
                 '}';

@@ -5,37 +5,38 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
+import java.util.Optional;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name = "label_recommendations")
-public class LabelRecommendations {
+@Table(name = "album_recommendation")
+public class AlbumRecommendation {
 
     @Id
-    @Column(name = "labelRecommendations_id")
+    @Column(name = "albumRecommendation_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotNull(message = "labelid cannot be null.")
-    @Column(name = "label_id")
-    private Integer labelId;
+    @NotNull(message = "album id cannot be null.")
+    @Column(name = "album_id")
+    private Integer albumId;
     @NotNull(message = "user is cannot be null.")
     @Column(name = "user_id")
     private Integer userId;
     @NotNull(message = "boolean cannot be null.")
     private boolean liked;
 
-    public LabelRecommendations() {
+    public AlbumRecommendation() {
     }
 
-    public LabelRecommendations(Integer labelId, Integer userId, boolean liked) {
-        this.labelId = labelId;
+    public AlbumRecommendation(Integer albumId, Integer userId, boolean liked) {
+        this.albumId = albumId;
         this.userId = userId;
         this.liked = liked;
     }
 
-    public LabelRecommendations(Integer id, Integer labelId, Integer userId, boolean liked) {
+    public AlbumRecommendation(Integer id, Integer albumId, Integer userId, boolean liked) {
         this.id = id;
-        this.labelId = labelId;
+        this.albumId = albumId;
         this.userId = userId;
         this.liked = liked;
     }
@@ -48,12 +49,12 @@ public class LabelRecommendations {
         this.id = id;
     }
 
-    public Integer getLabelId() {
-        return labelId;
+    public Integer getAlbumId() {
+        return albumId;
     }
 
-    public void setLabelId(Integer labelId) {
-        this.labelId = labelId;
+    public void setAlbumId(Integer albumId) {
+        this.albumId = albumId;
     }
 
     public Integer getUserId() {
@@ -76,22 +77,23 @@ public class LabelRecommendations {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LabelRecommendations that = (LabelRecommendations) o;
-        return liked == that.liked && Objects.equals(id, that.id) && Objects.equals(labelId, that.labelId) && Objects.equals(userId, that.userId);
+        AlbumRecommendation that = (AlbumRecommendation) o;
+        return liked == that.liked && Objects.equals(id, that.id) && Objects.equals(albumId, that.albumId) && Objects.equals(userId, that.userId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, labelId, userId, liked);
+        return Objects.hash(id, albumId, userId, liked);
     }
 
     @Override
     public String toString() {
-        return "LabelRecommendations{" +
+        return "AlbumRecommendation{" +
                 "id=" + id +
-                ", labelId=" + labelId +
+                ", albumId=" + albumId +
                 ", userId=" + userId +
                 ", liked=" + liked +
                 '}';
     }
+
 }

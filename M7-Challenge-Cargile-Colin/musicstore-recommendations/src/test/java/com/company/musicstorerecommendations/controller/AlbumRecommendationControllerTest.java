@@ -1,7 +1,7 @@
 package com.company.musicstorerecommendations.controller;
 
-import com.company.musicstorerecommendations.model.AlbumRecommendations;
-import com.company.musicstorerecommendations.repository.AlbumRecommendationsRepository;
+import com.company.musicstorerecommendations.model.AlbumRecommendation;
+import com.company.musicstorerecommendations.repository.AlbumRecommendationRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +18,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.doReturn;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -26,31 +25,31 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(AlbumRecommendationsController.class)
-public class AlbumRecommendationsControllerTest {
+@WebMvcTest(AlbumRecommendationController.class)
+public class AlbumRecommendationControllerTest {
 
     @Autowired
     MockMvc mockMvc;
 
     @MockBean
-    AlbumRecommendationsRepository albumRecommendationsRepo;
+    AlbumRecommendationRepository albumRecommendationsRepo;
 
     private ObjectMapper mapper = new ObjectMapper();
 
-    AlbumRecommendations inputAlbumRecommend1;
-    AlbumRecommendations outputAlbumRecommend1;
-    AlbumRecommendations inputAlbumRecommend2;
-    AlbumRecommendations outputAlbumRecommend2;
+    AlbumRecommendation inputAlbumRecommend1;
+    AlbumRecommendation outputAlbumRecommend1;
+    AlbumRecommendation inputAlbumRecommend2;
+    AlbumRecommendation outputAlbumRecommend2;
 
-    List<AlbumRecommendations> allAlbumRecommendations;
+    List<AlbumRecommendation> allAlbumRecommendations;
 
     @Before
     public void setUp() throws Exception {
-        inputAlbumRecommend1 = new AlbumRecommendations(1, 1, true);
-        outputAlbumRecommend1 = new AlbumRecommendations(1, 1, true);
+        inputAlbumRecommend1 = new AlbumRecommendation(1, 1, true);
+        outputAlbumRecommend1 = new AlbumRecommendation(1, 1, true);
         outputAlbumRecommend1.setId(1);
-        inputAlbumRecommend2 = new AlbumRecommendations(2, 2, true);
-        outputAlbumRecommend2 = new AlbumRecommendations(2, 2, true);
+        inputAlbumRecommend2 = new AlbumRecommendation(2, 2, true);
+        outputAlbumRecommend2 = new AlbumRecommendation(2, 2, true);
         outputAlbumRecommend2.setId(2);
 
         allAlbumRecommendations = new ArrayList<>(Arrays.asList(outputAlbumRecommend1, outputAlbumRecommend2));
@@ -69,7 +68,7 @@ public class AlbumRecommendationsControllerTest {
         String inputJson = mapper.writeValueAsString(inputAlbumRecommend1);
         String outputJson = mapper.writeValueAsString(outputAlbumRecommend1);
 
-        mockMvc.perform(post("/albumRecommendations")
+        mockMvc.perform(post("/albumRecommendation")
                 .content(inputJson)
                 .contentType(MediaType.APPLICATION_JSON)
         )
@@ -82,7 +81,7 @@ public class AlbumRecommendationsControllerTest {
     public void shouldGetAlbumRecommendationsById() throws Exception {
         String outputJson = mapper.writeValueAsString(outputAlbumRecommend1);
 
-        mockMvc.perform(get("/albumRecommendations/1"))
+        mockMvc.perform(get("/albumRecommendation/1"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().json(outputJson));
@@ -92,7 +91,7 @@ public class AlbumRecommendationsControllerTest {
     public void shouldGetAllAlbumRecommendations() throws Exception {
         String outputJson = mapper.writeValueAsString(allAlbumRecommendations);
 
-        mockMvc.perform(get("/albumRecommendations"))
+        mockMvc.perform(get("/albumRecommendation"))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(content().json(outputJson));
@@ -105,7 +104,7 @@ public class AlbumRecommendationsControllerTest {
 
         String inputJson = mapper.writeValueAsString(inputAlbumRecommend1);
 
-        mockMvc.perform(put("/albumRecommendations")
+        mockMvc.perform(put("/albumRecommendation")
                 .content(inputJson)
                 .contentType(MediaType.APPLICATION_JSON)
         )
@@ -115,7 +114,7 @@ public class AlbumRecommendationsControllerTest {
 
     @Test
     public void shouldRespondWith204WhenDeletingAlbumRecommendations() throws Exception {
-        mockMvc.perform(delete("/albumRecommendations/1"))
+        mockMvc.perform(delete("/albumRecommendation/1"))
                 .andDo(print())
                 .andExpect(status().isNoContent());
     }
