@@ -18,7 +18,7 @@
   -- [Test](#test)
   
   ## Usage:
-  Here is a link to a [demo of the catalog](https://nameless-hollows-26950.herokuapp.com/artist) /n
+  Here is a link to a [demo of the catalog](https://nameless-hollows-26950.herokuapp.com/artist) 
   Here is a link to a [demo of the recommendation](https://peaceful-mesa-82774.herokuapp.com/artistRecommendation)
    
   ## Installation:
