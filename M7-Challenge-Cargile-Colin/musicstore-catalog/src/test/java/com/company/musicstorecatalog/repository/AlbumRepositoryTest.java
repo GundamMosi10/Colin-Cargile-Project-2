@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.time.LocalDate;
@@ -126,6 +127,20 @@ public class AlbumRepositoryTest {
 
         List<Album> albumList = albumRepository.findAll();
         assertEquals(albumList.size(), 1);
+    }
+
+    @Test(expected = DataIntegrityViolationException.class)
+    public void addWithReferenceIntegrityException() {
+
+        Album album = new Album();
+        album.setTitle("Greatest Hits");
+        album.setArtistId(500);
+        album.setLabelId(396);
+        album.setReleaseDate(LocalDate.of(1993, 04, 11));
+        album.setListPrice(21.95);
+
+        album = albumRepository.save(album);
+
     }
 
     @After //help from Kevin(Zhong) for the cascading tests problem.

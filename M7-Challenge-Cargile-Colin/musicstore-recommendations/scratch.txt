@@ -1,0 +1,14 @@
+SPRING_DATASOURCE_URL = jdbc:mysql://h1use0ulyws4lqr1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/qmvt9wwntfn2pktu
+SPRING_DATASOURCE_USERNAME = son55d95a9zw6zov
+SPRING_DATASOURCE_PASSWORD = xrajn6ax9zlriwhx
+
+mysql://son55d95a9zw6zov:xrajn6ax9zlriwhx@h1use0ulyws4lqr1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/qmvt9wwntfn2pktu
+
+mySQL Workbench HostName = h1use0ulyws4lqr1.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
+
+
+
+
+absolutePath = /Users/colincargile/Desktop/musicstore-recommendations
+
+https://peaceful-mesa-82774.herokuapp.com/artistRecommendation

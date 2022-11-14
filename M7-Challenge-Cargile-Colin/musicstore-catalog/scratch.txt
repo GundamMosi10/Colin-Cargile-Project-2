@@ -1,11 +1,19 @@
 /Users/colincargile/Desktop/Colin-Cargile-Project-2/M7-Challenge-Cargile-Colin/musicstore-catalog
 
-docker container run -d -p 3306:3306 \
---env MYSQL_ROOT_PASSWORD=luisa10 \
---volume="/Users/colincargile/Desktop/Colin-Cargile-Project-2/M7-Challenge-Cargile-Colin/musicstore-catalog":/var/lib/mysql \
---name=musicstorecatalog-db musicstorecatalog-db
-
 #FROM openjdk:8-jdk-alpine
 #ARG JAR_FILE=target/*.jar
 #COPY ${JAR_FILE} app.jar
 #ENTRYPOINT ["java","-jar","/app.jar"]
+
+SPRING_DATASOURCE_URL       = jdbc:mysql://o2olb7w3xv09alub.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/nn446rrgngplmttt
+SPRING_DATASOURCE_USERNAME  = oaqk0ysv4ocqmydo
+SPRING_DATASOURCE_PASSWORD  = ulnqv2fgvat5n0gr
+
+mysql://oaqk0ysv4ocqmydo:ulnqv2fgvat5n0gr@o2olb7w3xv09alub.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/nn446rrgngplmttt
+
+MySQL Workbench HostName = o2olb7w3xv09alub.cbetxkdyhwsb.us-east-1.rds.amazonaws.com
+
+"artist_id": 1,
+"label_id": 1,
+
+https://nameless-hollows-26950.herokuapp.com/label

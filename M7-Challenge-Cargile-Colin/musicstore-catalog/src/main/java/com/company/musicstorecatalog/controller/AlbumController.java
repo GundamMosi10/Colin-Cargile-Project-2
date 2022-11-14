@@ -30,7 +30,7 @@ public class AlbumController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public Album addAlbum(@RequestBody Album album) {
+    public Album addAlbum(@RequestBody @Valid Album album) {
         return repo.save(album);
     }
 
